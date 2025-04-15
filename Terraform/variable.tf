@@ -1,14 +1,19 @@
 variable "kubernetes_version" {
-  default     = 1.27
-  description = "kubernetes version"
+  description = "Kubernetes version"
 }
 
 variable "vpc_cidr" {
-  default     = "10.0.0.0/16"
-  description = "default CIDR range of the VPC"
+  description = "Default CIDR range of the VPC"
 }
 
 variable "aws_region" {
   description = "AWS region"
-  default     = "us-east-1"
+}
+
+variable "private_subnets" {
+  description = "List of private subnet CIDR blocks"
+}
+
+variable "public_subnets" {
+  description = "List of public subnet CIDR blocks"
 }
