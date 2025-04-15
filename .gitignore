@@ -43,4 +43,8 @@ TfstateResources/.terraform/
 Terraform/.terraform.tfstate
 Terraform/.terraform.tfstate.backup
 Terraform/.terraform.lock.hcl
+<<<<<<< HEAD
 TfstateResources/.terraform.lock.hcl
+=======
+TfstateResources/.terraform.lock.hcl
+>>>>>>> e314c0c (Initial commit)
