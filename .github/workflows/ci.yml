@@ -49,14 +49,15 @@ jobs:
                 push: true
                 tags: ${{ secrets.DOCKER_USERNAME }}/simpletimeservice:app-${{ github.run_number }}        
 
-    modifyGit:
+    modifygit:
       needs: docker-build
       runs-on: ubuntu-latest
       steps:
         - name: Checkout repository
-          run: |
-           git clone https://github.com/Vishtyagi/STSManifests.git
-           cd STSManifests
+          uses: actions/checkout@v3
+          with:
+            repository: 'Vishtyagi/STSManifests'
+            token: ${{ secrets.GIT_PASSWORD }}
 
         
         - name: Modify the deployment image
@@ -69,5 +70,7 @@ jobs:
             git commit -m "Updated deployment image by GitHub Actions Job modifygit: ${{ github.run_number }}"
             git push origin main
           env:
+            GIT_USERNAME: ${{ secrets.GIT_USERNAME }}
+            GIT_PASSWORD: ${{ secrets.GIT_PASSWORD }}
             RUN_NUMBER: ${{ github.run_number }}
 
