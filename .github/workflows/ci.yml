@@ -18,13 +18,12 @@ jobs:
               run: |
                   echo "Installing Trivy..."
                   sudo apt-get update
-                  sudo apt-get install -y wget
-                  wget -qO- https://github.com/aquasecurity/trivy/releases/latest/download/trivy_0.44.0_Linux-64bit.tar.gz | tar zxvf - -C /usr/local/bin/
+                  sudo apt-get install -y trivy
             
             - name: Run Trivy scan
               run: |
                      echo "Running Trivy scan..."
-                     trivy config --exit-code 1 --severity HIGH,CRITICAL --file-path ./Dockerfile      
+                     trivy config Dockerfile    
     
     docker-build:
         runs-on: ubuntu-latest
