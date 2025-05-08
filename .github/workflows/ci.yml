@@ -47,7 +47,7 @@ jobs:
               with:
                 context: src
                 push: true
-                tags: ${{ secrets.DOCKER_USERNAME }}/images:app-${{ github.run_number }}        
+                tags: ${{ secrets.DOCKER_USERNAME }}/simpletimeservice:app-${{ github.run_number }}        
 
 
 
