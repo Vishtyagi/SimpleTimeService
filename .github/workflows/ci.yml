@@ -49,7 +49,25 @@ jobs:
                 push: true
                 tags: ${{ secrets.DOCKER_USERNAME }}/simpletimeservice:app-${{ github.run_number }}        
 
+    modifyGit:
+      needs: docker-build
+      runs-on: ubuntu-latest
+      steps:
+        - name: Checkout repository
+          run: |
+           git clone https://github.com/Vishtyagi/STSManifests.git
+           cd STSManifests
 
-
-     
+        
+        - name: Modify the deployment image
+          run: |
+            git config user.email "vishal12tyagi1998@gmail.com"
+            git config user.name "Vishtyagi"
+            sed -i "s+visdocker11/simpletimeservice.*+visdocker11/simpletimeservice:app-$RUN_NUMBER+g" deployment.yaml
+            cat deployment.yaml
+            git add deployment.yaml
+            git commit -m "Updated deployment image by GitHub Actions Job modifygit: ${{ github.run_number }}"
+            git push origin main
+          env:
+            RUN_NUMBER: ${{ github.run_number }}
 
