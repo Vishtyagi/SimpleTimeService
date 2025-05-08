@@ -26,7 +26,7 @@ jobs:
     #         - name: Run Trivy scan
     #           run: |
     #                  echo "Running Trivy scan..."
-    #                  trivy config --exit-code 1 --severity HIGH,CRITICAL --no-progress --quiet --timeout 10m --cache-dir /tmp/trivy-cache ./Dockerfile
+    #                  trivy config --exit-code 1 --severity HIGH,CRITICAL --no-progress --quiet --timeout 10m --cache-dir /tmp/trivy-cache ./src/Dockerfile
     
     docker-build:
         runs-on: ubuntu-latest
@@ -45,7 +45,7 @@ jobs:
             - name: Build and push Docker image
               run: |
                     echo "Building and pushing Docker image..."
-                    docker build -t simpletimeservice:latest .
+                    docker build -t simpletimeservice:latest ./src/Dockerfile
                      
             - name: Push Docker image
               run: |
